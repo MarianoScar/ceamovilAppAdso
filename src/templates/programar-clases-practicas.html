@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %} programacion clases practicas {% endblock %}
+
+{% block content %}
+
+
+<div class="col-9 form-container">
+
+
+    <!--  búsqueda -->
+    <div class="row text-center mt-5">
+        <div class="col-md-12">
+            <label for="busqueda" class="form-label">Buscar Persona (Nombre completo o Documento de identidad):</label>
+            <input type="text" class="form-control" id="busqueda" placeholder="Ingrese el nombre completo o documento de identidad">
+        </div>
+    </div>
+
+    
+    
+        <!-- Sección para seleccionar la fecha -->
+        <div class="row text-center mt-5">
+            <div class="col-md-12">
+                <label for="fecha" class="form-label">Seleccione la fecha:</label>
+                <!-- Campo para seleccionar la fecha utilizando un calendario -->
+                <input type="date" class="form-control" id="fecha">
+            </div>
+        </div>
+
+        <!-- Sección para seleccionar la hora -->
+        <div class="row text-center mt-4">
+            <div class="col-md-12">
+                <label for="hora" class="form-label">Seleccione la hora:</label>
+                <!-- Lista desplegable para seleccionar la hora permitida -->
+                <select class="form-select" id="hora">
+                    <!-- Opciones para seleccionar horas entre las 06:00 y las 20:00 -->
+                    <option value="06:00">06:00</option>
+                    <option value="08:00">08:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="16:00">16:00</option>
+                    <option value="18:00">18:00</option>
+                    <option value="20:00">20:00</option>
+                </select>
+            </div>
+        </div>
+
+
+</div>
+
+{%  endblock %}

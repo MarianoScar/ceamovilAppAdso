@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+
+{% block title %} programacion clases teoricas {% endblock %}
+
+{% block content %}
+
+
+    <div class="col-9 form-container">
+
+
+        <div class="row text-center mt-4">
+            <!-- Columna para el ícono "TEMAS" -->
+            <div class="col-md-4">
+                <i class="bi bi-book"></i>
+                <a href="#">TEMAS</a>
+            </div>
+            <!-- Columna para el ícono  "FECHA" -->
+            <div class="col-md-4">
+                <i class="bi bi-calendar"></i>
+                <a href="#">FECHA</a>
+            </div>
+            <!-- Columna para el ícono  "HORA" -->
+            <div class="col-md-4">
+                <i class="bi bi-clock"></i>
+                <a href="#">hora</a>
+            </div>
+        </div>
+
+        <!-- Sección de opciones de temas, organizada en una fila -->
+        <div class="row text-center mt-4">
+            
+            <div class="col-md-3 col-sm-6 mb-3">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="tema1">
+                    <label class="form-check-label" for="tema1">Tema 1</label>
+                </div>
+            </div>
+            <!-- Repetir la estructura para cada tema adicional -->
+            <div class="col-md-3 col-sm-6 mb-3">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="tema5">
+                    <label class="form-check-label" for="tema5">Tema 5</label>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-3">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="tema9">
+                    <label class="form-check-label" for="tema9">Tema 9</label>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-3">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="tema2">
+                    <label class="form-check-label" for="tema2">Tema 2</label>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-3">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="tema6">
+                    <label class="form-check-label" for="tema6">Tema 6</label>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-3">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="tema10">
+                    <label class="form-check-label" for="tema10">Tema 10</label>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-3">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="tema3">
+                    <label class="form-check-label" for="tema3">Tema 3</label>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-3">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="tema7">
+                    <label class="form-check-label" for="tema7">Tema 7</label>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-3">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="tema11">
+                    <label class="form-check-label" for="tema11">Tema 11</label>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-3">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="tema4">
+                    <label class="form-check-label" for="tema4">Tema 4</label>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-3">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="tema8">
+                    <label class="form-check-label" for="tema8">Tema 8</label>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-3">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="tema12">
+                    <label class="form-check-label" for="tema12">Tema 12</label>
+                </div>
+            </div>
+        </div>
+
+         <!-- Sección para seleccionar la fecha -->
+         <div class="row text-center mt-5">
+            <div class="col-md-12">
+                <label for="fecha" class="form-label">Seleccione la fecha:</label>
+                <!-- Campo para seleccionar la fecha utilizando un calendario -->
+                <input type="date" class="form-control" id="fecha">
+            </div>
+        </div>
+
+        <!-- Sección para seleccionar la hora -->
+        <div class="row text-center mt-4">
+            <div class="col-md-12">
+                <label for="hora" class="form-label">Seleccione la hora:</label>
+                <!-- Lista desplegable para seleccionar la hora permitida -->
+                <select class="form-select" id="hora">
+                    <!-- Opciones para seleccionar horas entre las 06:00 y las 20:00 -->
+                    <option value="06:00">06:00</option>
+                    <option value="08:00">08:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="16:00">16:00</option>
+                    <option value="18:00">18:00</option>
+                    <option value="20:00">20:00</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Botón de continuar, centrado -->
+        <div class="text-center mt-4">
+            <button class="btn btn-warning">CONTINUAR</button>
+        </div>
+    </div>
+
+
+{% endblock %}

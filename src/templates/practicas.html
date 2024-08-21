@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %} ingreso y salida practicas {% endblock %}
+
+{% block content %}
+
+<div class="col-9 form-container">
+
+
+    <!--  búsqueda -->
+    <div class="row text-center mt-5">
+        <div class="col-md-12">
+            <label for="busqueda" class="form-label">Buscar Persona (Nombre completo o Documento de identidad):</label>
+            <input type="text" class="form-control" id="busqueda" placeholder="Ingrese el nombre completo o documento de identidad">
+        </div>
+    </div>
+
+     <!-- Sección para seleccionar la fecha -->
+     <div class="row text-center mt-5">
+        <div class="col-md-12">
+            <label for="fecha" class="form-label">Seleccione la fecha:</label>
+            <!-- Campo para seleccionar la fecha utilizando un calendario -->
+            <input type="date" class="form-control" id="fecha">
+        </div>
+    </div>
+
+    
+    
+
+</div>
+{% endblock %}

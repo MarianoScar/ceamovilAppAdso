@@ -1,0 +1,53 @@
+
+{% extends "base.html" %}
+
+{% block title %}Registro de alumnos{% endblock %}
+
+{% block content %}
+<div class="col-9 form-container">
+  <!--formulario de registro alumnos-->
+    <main class="container mt-4">
+      <h2>Formulario de Registro</h2>
+      <form>
+        <div class="mb-3">
+          <label for="nombreCompleto" class="form-label">Nombre Completo</label>
+          <input type="text" class="form-control" id="nombreCompleto" placeholder="Ingresa tu nombre completo">
+        </div>
+        <div class="mb-3">
+          <label for="edad" class="form-label">Edad</label>
+          <input type="number" class="form-control" id="edad" placeholder="Ingresa tu edad">
+        </div>
+        <div class="mb-3">
+          <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
+          <input type="date" class="form-control" id="fechaNacimiento">
+        </div>
+        <div class="mb-3">
+          <label for="tipoDocumento" class="form-label">Tipo de Documento</label>
+          <select class="form-select" id="tipoDocumento">
+            <option selected>Selecciona tu tipo de documento</option>
+            <option value="DNI">DNI</option>
+            <option value="Pasaporte">Pasaporte</option>
+            <option value="Cedula">Cédula</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="numeroDocumento" class="form-label">Número de Documento</label>
+          <input type="text" class="form-control" id="numeroDocumento" placeholder="Ingresa tu número de documento">
+        </div>
+        <div class="mb-3">
+          <label for="direccion" class="form-label">Dirección</label>
+          <input type="text" class="form-control" id="direccion" placeholder="Ingresa tu dirección">
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" placeholder="Ingresa tu email">
+        </div>
+        <div class="mb-3">
+          <label for="curso" class="form-label">Curso a Tomar</label>
+          <input type="text" class="form-control" id="curso" placeholder="Ingresa el curso que deseas tomar">
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+      </form>
+    </main>
+</div>
+{% endblock %}
