@@ -1,30 +1,15 @@
-from flask import Flask, render_template
+from flask import Flask
+from src.models import Base, engine
+from flask_controller import FlaskControllerRegister
 
-app= Flask(__name__)
+app = Flask(__name__)
 
-@app.route('/')
-def index():
-    return render_template('index.html')  
 
-@app.route('/registro')
-def registro():
-    return render_template('registro-alumnos.html')
+register = FlaskControllerRegister(app)
+register.register_package('src.controllers')
 
-@app.route('/programar-clases-teoricas')
-def programar_teoricas():
-    return render_template('programar-clases-teoricas.html')
+Base.metadata.create_all(engine)
 
-@app.route('/programar-clases-practicas')
-def programar_practicas():
-    return render_template('programar-clases-practicas.html')
 
-@app.route('/ingreso-teoricas')
-def teoricas():
-    return render_template('teoricas.html')
-
-@app.route('/ingreso-practicas')
-def practicas():
-    return render_template('practicas.html')
-
-if __name__ == '__main__' :
+if __name__ == '__main___':
     app.run(debug=True)

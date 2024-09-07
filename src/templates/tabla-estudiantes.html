@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Registro de alumnos{% endblock %}
+
+{% block content %}
+
+<div class="col-10 form-container">
+
+    {% if estudiantes %}
+    <table>
+      <!-- Estructura de la tabla -->
+
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Email</th>
+      </tr>
+      {% for estudiante in estudiantes %}
+        <tr>
+          <td>{{ estudiante.id }}</td>
+          <td>{{ estudiante.nombre }}</td>
+          <td>{{ estudiante.apellido }}</td>
+          <td>{{ estudiante.email }}</td>
+        </tr>
+        
+      {% endfor %}
+    </table>
+  {% else %}
+    <p>No hay estudiantes registrados.</p>
+  {% endif %}
+
+
+
+
+
+</div>
+{% endblock %}

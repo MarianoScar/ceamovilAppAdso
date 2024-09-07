@@ -4,48 +4,62 @@
 {% block title %}Registro de alumnos{% endblock %}
 
 {% block content %}
-<div class="col-9 form-container">
-  <!--formulario de registro alumnos-->
+<div class="col-10 form-container">
+  
     <main class="container mt-4">
       <h2>Formulario de Registro</h2>
-      <form>
+      <form action="/registro" method="post">
         <div class="mb-3">
-          <label for="nombreCompleto" class="form-label">Nombre Completo</label>
-          <input type="text" class="form-control" id="nombreCompleto" placeholder="Ingresa tu nombre completo">
+          <label for="nombre" class="form-label">Nombre Completo</label>
+          <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingresa tu nombre completo">
         </div>
+       
         <div class="mb-3">
-          <label for="edad" class="form-label">Edad</label>
-          <input type="number" class="form-control" id="edad" placeholder="Ingresa tu edad">
-        </div>
-        <div class="mb-3">
-          <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
-          <input type="date" class="form-control" id="fechaNacimiento">
-        </div>
-        <div class="mb-3">
-          <label for="tipoDocumento" class="form-label">Tipo de Documento</label>
-          <select class="form-select" id="tipoDocumento">
+          <label for="tipo_identificacion" class="form-label">Tipo de Documento</label>
+          <select class="form-select" id="tipo_identificacion" name="tipo_identificacion">
             <option selected>Selecciona tu tipo de documento</option>
             <option value="DNI">DNI</option>
             <option value="Pasaporte">Pasaporte</option>
             <option value="Cedula">Cédula</option>
           </select>
         </div>
+
         <div class="mb-3">
-          <label for="numeroDocumento" class="form-label">Número de Documento</label>
-          <input type="text" class="form-control" id="numeroDocumento" placeholder="Ingresa tu número de documento">
+          <label for="numero_identificacion" class="form-label">Número de Documento</label>
+          <input type="text" class="form-control" id="numero_identificacion" name="numero_identificacion" placeholder="Ingresa tu número de documento">
         </div>
+
+        <div class="col-md-12">
+          <label for="fecha_nacimiento" class="form-label">Seleccione la fecha de nacimiento:</label>
+          <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento">
+       </div>
+
         <div class="mb-3">
+          <label for="telefono" class="form-label">Número de Telefono</label>
+          <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Ingresa tu número de documento">
+        </div>
+
+      <!--  <div class="mb-3">
           <label for="direccion" class="form-label">Dirección</label>
           <input type="text" class="form-control" id="direccion" placeholder="Ingresa tu dirección">
-        </div>
+        </div> 
+      -->  
+
         <div class="mb-3">
           <label for="email" class="form-label">Email</label>
-          <input type="email" class="form-control" id="email" placeholder="Ingresa tu email">
+          <input type="email" class="form-control" id="email" name="email" placeholder="Ingresa tu email">
         </div>
+
         <div class="mb-3">
           <label for="curso" class="form-label">Curso a Tomar</label>
-          <input type="text" class="form-control" id="curso" placeholder="Ingresa el curso que deseas tomar">
+          <select class="form-select" id="curso" name="curso">
+            <option selected>Selecciona el curso</option>
+            <option value="MOTO">MOTO</option>
+            <option value="AUTOMOVIL">AUTOMMOVIL</option>
+            <option value="CAMION">CAMION</option>
+          </select>
         </div>
+
         <button type="submit" class="btn btn-primary">Enviar</button>
       </form>
     </main>
