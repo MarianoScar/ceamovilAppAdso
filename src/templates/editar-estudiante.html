@@ -1,0 +1,69 @@
+
+{% extends "base.html" %}
+
+{% block title %} Editar estudiante {% endblock %}
+
+{% block content %}
+<div class="col-10 form-container">
+  
+    <main class="container mt-4">
+      <h2>Editar estudiante </h2>
+      <form action="{{ url_for('editar_estudiante', id_estudiante=estudiante.id) }}" method="post">
+        <div class="mb-3">
+          <label for="nombre" class="form-label">Nombre Completo</label>
+          <input type="text" class="form-control" id="nombre" name="nombre" value="{{ estudiante.nombre }}">
+        </div>
+       
+        <div class="mb-3">
+          <label for="tipo_identificacion" class="form-label">Tipo de Documento</label>
+          <select class="form-select" id="tipo_identificacion" name="tipo_identificacion">
+            <option value="DNI" {{ 'selected' if estudiante.tipo_identificacion == 'DNI' }}>DNI</option>
+            <option value="Pasaporte" {{ 'selected' if estudiante.tipo_identificacion == 'Pasaporte' }}>Pasaporte</option>
+            <option value="Cedula" {{ 'selected' if estudiante.tipo_identificacion == 'Cedula' }}>Cédula</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="numero_identificacion" class="form-label">Número de Documento</label>
+          <input type="text" class="form-control" id="numero_identificacion" name="numero_identificacion"  value="{{estudiante.numero_identificacion}}">
+        </div>
+
+        <div class="col-md-12">
+          <label for="fecha_nacimiento" class="form-label">Seleccione la fecha de nacimiento:</label>
+          <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" value="{{estudiante.fecha_nacimiento}}">
+       </div>
+
+        <div class="mb-3">
+          <label for="telefono" class="form-label">Número de Telefono</label>
+          <input type="text" class="form-control" id="telefono" name="telefono"  value="{{estudiante.telefono}}">
+        </div>
+
+      <!--  <div class="mb-3">
+          <label for="direccion" class="form-label">Dirección</label>
+          <input type="text" class="form-control" id="direccion" placeholder="Ingresa tu dirección">
+        </div> 
+      -->  
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" name="email" value="{{estudiante.email}}">
+        </div>
+
+        <div class="mb-3">
+          <label for="curso" class="form-label">Curso a Tomar</label>
+          <select class="form-select" id="curso" name="curso">
+            <option value="" {% if not estudiante.curso %}selected{% endif %}>Selecciona el curso</option>
+            <option value="Moto" {% if estudiante.curso.value == 'Moto' %}selected{% endif %}>Moto</option>
+            <option value="Automovil" {% if estudiante.curso.value == 'Automovil' %}selected{% endif %}>Automovil</option>
+            <option value="Camion" {% if estudiante.curso.value == 'Camion' %}selected{% endif %}>Camion</option>
+          </select>
+        </div>
+        
+
+        <p>Curso seleccionado: {{ estudiante.curso }}</p>
+        
+        <button type="submit" class="btn btn-primary">Enviar</button>
+      </form>
+    </main>
+</div>
+{% endblock %}

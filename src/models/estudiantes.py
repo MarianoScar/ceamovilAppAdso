@@ -35,10 +35,10 @@ class Estudiantes(Base, SerializerMixin):
         session.commit()
         return estudiante
     
-    def obtener_estudiante():
-        estudiante = session.query(Estudiantes).all()
-        return estudiante    
+   # def obtener_estudiante():
+   #    estudiante = session.query(Estudiantes).all()
+   #     return estudiante    
     
-    def obtener_estudiante_por_id(id):
-        estudiante = session.query(Estudiantes).get(id)
-        return estudiante.to_dict() if estudiante else None
+    #def obtener_estudiante_por_id(id):
+    #   estudiante = session.query(Estudiantes).get(id)
+    #  return estudiante.to_dict() if estudiante else None
