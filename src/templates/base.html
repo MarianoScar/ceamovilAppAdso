@@ -36,16 +36,29 @@
         .appName{
             color: darkorange;
         }
+
+        .image-container img {
+            border-radius: 10px; 
+            transition: transform 0.3s ease; 
+        }
+
+        .image-container img:hover {
+            transform: scale(1.05); 
+        }
+
+        .image-container {
+            margin-bottom: 20px; 
+        }
     </style>
 </head>
 <body>
     
   <div class="container-fluid">
-        <!--barra de navegacion superior-->
+        <!--Esta es la barra superior-->
         <div class="row">
             <div class="col-12 p-0">
                 <nav class="navbar navbar-dark bg-dark">
-                    <h1 class="appName">CEAMOVILAPP</h1>
+                    <h1 class="appName"><a href="/">CEAMOVILAPP</a></h1>
                     <button class="btn btn-outline-success" type="submit">Logout</button>
                 </nav>
             </div>
@@ -53,7 +66,7 @@
 
     
         <div class="row vh-100">
-        <!--sidebar-->
+        <!--Esta es la barra lateral-->
             <div class="col-2 p-0">
                 <div id="sidebar" class="d-flex flex-column align-items-center justify-content-center p-3 bg-dark h-100">
                     <i class="bi bi-person-fill p-0"></i>
@@ -61,17 +74,29 @@
                     <div class="d-flex flex-column align-items-center justify-content-center">
                         <ul class="list-unstyled">
                             <li class="btn btn-warning w-100 mb-3"><a href="/estudiantes">ESTUDIANTES</a></li>
-                            <li class="btn btn-warning w-100 mb-3"><a href="/programar-clases-teoricas">CURSOS</a></li>
-                            <li class="btn btn-warning w-100 mb-3"><a href="/programar-clases-practicas">CLASES TEORICAS</a></li>
-                            <li class="btn btn-warning w-100 mb-3"><a href="/ingreso-teoricas">CLASES PRACTICAS</a></li>
+                            <li class="btn btn-warning w-100 mb-3"><a href="/cursos">CURSOS</a></li>
+                            <li class="btn btn-warning w-100 mb-3"><a href="#">CLASES TEORICAS</a></li>
+                            <li class="btn btn-warning w-100 mb-3"><a href="#">CLASES PRACTICAS</a></li>
                         </ul>
                     </div>
                 </div>
             </div>   
 
             {% block content %}
+                    <!-- aqui voy a colocar el contenido principal de las de mas vistas-->
 
-            <!-- aqui va el contenido a incorporar de cada seccion-->
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            <div class="flash-messages">
+                                {% for message in messages %}
+                                    <div class="alert alert-info">
+                                        {{ message }}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    {% endwith %}
+
 
             {% endblock %}
       

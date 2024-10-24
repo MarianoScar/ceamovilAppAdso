@@ -37,31 +37,13 @@
           <label for="telefono" class="form-label">Número de Telefono</label>
           <input type="text" class="form-control" id="telefono" name="telefono"  value="{{estudiante.telefono}}">
         </div>
-
-      <!--  <div class="mb-3">
-          <label for="direccion" class="form-label">Dirección</label>
-          <input type="text" class="form-control" id="direccion" placeholder="Ingresa tu dirección">
-        </div> 
-      -->  
+  
 
         <div class="mb-3">
           <label for="email" class="form-label">Email</label>
           <input type="email" class="form-control" id="email" name="email" value="{{estudiante.email}}">
         </div>
-
-        <div class="mb-3">
-          <label for="curso" class="form-label">Curso a Tomar</label>
-          <select class="form-select" id="curso" name="curso">
-            <option value="" {% if not estudiante.curso %}selected{% endif %}>Selecciona el curso</option>
-            <option value="Moto" {% if estudiante.curso.value == 'Moto' %}selected{% endif %}>Moto</option>
-            <option value="Automovil" {% if estudiante.curso.value == 'Automovil' %}selected{% endif %}>Automovil</option>
-            <option value="Camion" {% if estudiante.curso.value == 'Camion' %}selected{% endif %}>Camion</option>
-          </select>
-        </div>
-        
-
-        <p>Curso seleccionado: {{ estudiante.curso }}</p>
-        
+              
         <button type="submit" class="btn btn-primary">Enviar</button>
       </form>
     </main>

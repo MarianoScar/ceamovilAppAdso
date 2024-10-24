@@ -4,6 +4,7 @@
 {% block title %}Registro de alumnos{% endblock %}
 
 {% block content %}
+
 <div class="col-10 form-container">
   
     <main class="container mt-4">
@@ -11,14 +12,13 @@
       <form action="/registro" method="post">
         <div class="mb-3">
           <label for="nombre" class="form-label">Nombre Completo</label>
-          <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingresa tu nombre completo" value>
+          <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingresa tu nombre completo"  required minlength="2" maxlength="100">
         </div>
        
+
         <div class="mb-3">
           <label for="tipo_identificacion" class="form-label">Tipo de Documento</label>
-          <select class="form-select" id="tipo_identificacion" name="tipo_identificacion">
-            <option selected>Selecciona tu tipo de documento</option>
-            <option value="DNI">Tipo de documento</option>
+          <select class="form-select" id="tipo_identificacion" name="tipo_identificacion" required>
             <option value="Pasaporte">Pasaporte</option>
             <option value="Cedula">Cédula</option>
           </select>
@@ -26,37 +26,35 @@
 
         <div class="mb-3">
           <label for="numero_identificacion" class="form-label">Número de Documento</label>
-          <input type="text" class="form-control" id="numero_identificacion" name="numero_identificacion" placeholder="Ingresa tu número de documento">
+          <input type="number" class="form-control" id="numero_identificacion" name="numero_identificacion" placeholder="Ingresa tu número de documento" required>
         </div>
 
         <div class="col-md-12">
           <label for="fecha_nacimiento" class="form-label">Seleccione la fecha de nacimiento:</label>
-          <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento">
+          <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" required>
        </div>
 
         <div class="mb-3">
           <label for="telefono" class="form-label">Número de Telefono</label>
-          <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Ingresa tu número de documento">
+          <input type="tel" class="form-control" id="telefono" name="telefono" placeholder="Ingresa tu número de documento" required pattern="[0-9]{10}" title="Debes ingresar numeros y deben ser 10 digitos">
         </div>
 
-      <!--  <div class="mb-3">
-          <label for="direccion" class="form-label">Dirección</label>
-          <input type="text" class="form-control" id="direccion" placeholder="Ingresa tu dirección">
-        </div> 
-      -->  
+      
 
         <div class="mb-3">
           <label for="email" class="form-label">Email</label>
-          <input type="email" class="form-control" id="email" name="email" placeholder="Ingresa tu email">
+          <input type="email" class="form-control" id="email" name="email" placeholder="Ingresa tu email" required title="El formato de email es:  correo@ejemplo.com">
         </div>
 
         <div class="mb-3">
-          <label for="curso" class="form-label">Curso a Tomar</label>
-          <select class="form-select" id="curso" name="curso">
-            <option selected>Selecciona el curso</option>
-            <option value="MOTO">MOTO</option>
-            <option value="AUTOMOVIL">AUTOMMOVIL</option>
-            <option value="CAMION">CAMION</option>
+          <label for="instancia_curso" class="form-label">Curso a Tomar (Fecha de Inicio - Fin)</label>
+          <select class="form-select" id="instancia_curso" name="instancia_curso" required>
+            <option>Selecciona un curso</option>
+            {% for instancia in instancias_curso %}
+              <option value="{{ instancia.id }}">
+                {{ instancia.curso.nombre_curso }} ({{ instancia.fecha_inicio }} - {{ instancia.fecha_fin }})
+              </option>
+            {% endfor %}
           </select>
         </div>
 

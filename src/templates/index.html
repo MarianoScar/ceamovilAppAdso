@@ -1,25 +1,36 @@
 {% extends "base.html" %}
 
-{% block title %} programacion clases practicas {% endblock %}
+{% block title %} Bienvenido a CEAMOVILAPP {% endblock %}
 
 {% block content %}
 
 
 <div class="col-10 form-container d-flex justify-content-center align-items-center">
 
+    {% if mensaje %}
+    <p class="alert alert-info">{{ mensaje }}</p>
+
+    {% else %}
+
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-4">
-                <img src="https://mintransporte.gov.co/publicaciones/3999/mas-de-65-millones-de-razones-para-conmemorar-el-quinto-aniversario-del-runt/info/mintransporte/media/img5933.jpg" alt="logo RUNT" class="img-fluid centered-image">
-                <a href="https://www.runt.com.co/consultaCiudadana/#/consultaVehiculo" target="_blank">CONSULTAR</a>
+            
+            <div class="col-md-4 image-container">
+                <a href="https://www.runt.com.co/consultaCiudadana/#/consultaVehiculo" target="_blank">
+                    <img src="https://mintransporte.gov.co/publicaciones/3999/mas-de-65-millones-de-razones-para-conmemorar-el-quinto-aniversario-del-runt/info/mintransporte/media/img5933.jpg" 
+                    alt="logo RUNT" class="img-fluid">
+                </a>
             </div>
 
-            <div class="col-md-4">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLXhJmYdgp-WNmSH5G9YuMPSN7Jh5VKcOy1g&s" alt="logo SIMIT" class="img-fluid centered-image">
-                <a href="https://fcm.org.co/simit/#/home-public" target="_blank">CONSULTAR</a>
+            
+            <div class="col-md-4 image-container">
+                <a href="https://fcm.org.co/simit/#/home-public" target="_blank">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLXhJmYdgp-WNmSH5G9YuMPSN7Jh5VKcOy1g&s" 
+                    alt="logo SIMIT" class="img-fluid">
+                </a>
             </div>
         </div>
     </div>
-
+{% endif %}
 </div>
 {% endblock %}

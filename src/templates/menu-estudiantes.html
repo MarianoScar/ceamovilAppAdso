@@ -1,23 +1,25 @@
 {% extends "base.html" %}
 
-{% block title %} Menu Estudiantes {% endblock %}
+{% block title %} Gestionar Estudiantes {% endblock %}
 
 {% block content %}
 
 
 <div class="col-10 form-container">
 
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <div class="flash-messages">
-                {% for message in messages %}
-                    <div class="alert alert-info">
-                        {{ message }}
-                    </div>
-                {% endfor %}
-            </div>
-        {% endif %}
-    {% endwith %}
+    {% with messages = get_flashed_messages(with_categories=True) %}
+    {% if messages %}
+        <div class="flash-messages">
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }} {% if category == 'error' %}alert-danger{% endif %}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+
+    
     
     <div class="d-flex justify-content-between align-items-center">
         <h1 class="mb-1">Lista de Estudiantes</h1>
@@ -34,17 +36,6 @@
                     <input type="text" class="form-control" id="busqueda" name="busqueda" placeholder="Ingrese su búsqueda">
                     <button type="submit" class="btn btn-primary">BUSCAR</button>
                 </div>
-            </div>
-            <div class="mb-3">
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="criterio_nombre" name="criterio_nombre">
-                    <label class="form-check-label" for="criterio_nombre">Buscar por nombre</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="criterio_numero_identificacion" name="criterio_numero_identificacion">
-                    <label class="form-check-label" for="criterio_numero_identificacion">Buscar por número de documento</label>
-                </div>
-            </div>
         </form>
     </div>
     
@@ -72,7 +63,14 @@
                     <td>{{ estudiante.numero_identificacion }}</td>
                     <td>{{ estudiante.telefono }}</td>
                     <td>{{ estudiante.email }}</td>
-                    <td>{{ estudiante.curso.value }}</td>
+                    <td>
+                        {% if estudiante.inscripciones %}
+                          {{ estudiante.inscripciones[0].instancia_curso.curso.nombre_curso }}
+                        {% else %}
+                          Sin Inscripción
+                        {% endif %}
+                      </td>
+                      
                     <td>{{ estudiante.fecha_nacimiento }}</td>
                 </tr>
                 {% endfor %}

@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for
+from flask import render_template
 from src.app import app
 from flask_controller import FlaskController
 
