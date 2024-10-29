@@ -1,7 +1,7 @@
 from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
-from src.models import Base, session
+from src.models import Base
 
 
 class Curso(Base, SerializerMixin):

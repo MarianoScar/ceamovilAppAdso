@@ -4,6 +4,8 @@ from src.models.cursos import Curso
 from src.models.instancia_curso import InstanciaCurso
 from src.app import app
 from datetime import datetime, timedelta
+from src.models.usuarios  import rol_requerido
+from flask_login import  login_required
 
 
 @app.route('/cursos', methods=['GET'])
@@ -20,6 +22,8 @@ def mostrar_instancias():
 
 
 @app.route('/crear-cursos', methods=['GET', 'POST'])
+@login_required
+@rol_requerido("administrador")
 def abrir_cursos():
     if request.method == 'POST':
         curso_id = request.form['curso_id']

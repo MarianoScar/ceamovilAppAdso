@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Date, Enum
+from sqlalchemy import Column, Integer, String, Date
 from src.models import Base
 from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.orm import relationship
@@ -27,5 +27,9 @@ class Estudiantes(Base, SerializerMixin):
         self.fecha_nacimiento = fecha_nacimiento
 
    
-    
+
+
+
+
+
   

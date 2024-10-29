@@ -4,6 +4,7 @@ from flask_controller import FlaskController
 
 
 class HomeController(FlaskController):
-    @app.route("/")
+    @app.route("/index")
     def index():
         return render_template('index.html')
+    

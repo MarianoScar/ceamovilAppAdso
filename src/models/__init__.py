@@ -1,7 +1,6 @@
-from flask_sqlalchemy import SQLAlchemy
+#from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
-import pymysql
 
 
 
@@ -14,3 +13,9 @@ Base.metadata.bind = engine
 Session = sessionmaker(bind=engine)
 
 session = Session()
+
+
+
+
+
+
