@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, Boolean
 from src.models import Base
 from flask_bcrypt import Bcrypt
 from flask_login import UserMixin, current_user
@@ -15,6 +15,7 @@ class Usuario(Base, UserMixin):
     nombre_usuario = Column(String(150), unique=True, nullable=False)
     contraseña_hash = Column(String(150), nullable=False)
     rol = Column(String(50), nullable=False)  
+    es_provisional = Column(Boolean, default=False)
 
     def establecer_contraseña(self, contraseña):
         self.contraseña_hash = bcrypt.generate_password_hash(contraseña).decode('utf-8')

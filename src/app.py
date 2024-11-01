@@ -14,12 +14,13 @@ usuario_inicial_creado = False
 
 @app.before_request
 def crear_usuario_inicial():
-    # Verificar si el usuario "user" ya existe
+    
     usuario = session.query(Usuario).filter_by(nombre_usuario="user").first()
     if usuario is None:
-        # Crear el usuario inicial con la contraseña y rol especificados
-        usuario = Usuario(nombre_usuario='user', rol='administrador')
-        usuario.establecer_contraseña('user')  # Establece la contraseña
+        
+        usuario = Usuario(nombre_usuario='user', rol='administrador', es_provisional = True)
+        usuario.establecer_contraseña('user')  
+        
         session.add(usuario)
         session.commit()
         print(f"Usuario inicial creado: {usuario.nombre_usuario} con contraseña: 'user'")  # Mostrar en consola
