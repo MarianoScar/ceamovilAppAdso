@@ -5,31 +5,41 @@
 {% block content %}
 
 
-<div class="col-10 form-container d-flex justify-content-center align-items-center">
+<div class="col-10 form-container d-flex justify-content-center align-items-center ">
 
+ 
     
-<div class="login-container">
-    <h3>Registrar Nuevo Usuario</h3>
-    <form action= "/crear-usuario" method="post">
-        <div class="mb-3 text-left">
-            <label for="nombre_usuario" class="form-label ">Nombre de usuario:</label>
-            <input type="text" name="nombre_usuario" id="nombre_usuario" class="form-control" required>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header">
+                <h3>Registrar Nuevo Usuario</h3>
+              </div>
+              <div class="card-body">
+                <form action="/crear-usuario" method="post">
+                  <div class="mb-3">
+                    <label for="nombre_usuario" class="form-label">Nombre de usuario:</label>
+                    <input type="text" name="nombre_usuario" id="nombre_usuario" class="form-control" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="contraseña" class="form-label">Contraseña:</label>
+                    <input type="password" name="contraseña" id="contraseña" class="form-control" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="rol" class="form-label">Rol:</label>
+                    <select name="rol" id="rol" class="form-select" required>
+                      <option value="usuario">Usuario</option>
+                      <option selected value="administrador">Administrador</option>
+                    </select>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Crear Usuario</button>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="mb-3 text-left">
-            <label for="contraseña" class="form-label ">Contraseña:</label>
-            <input type="password" name="contraseña" id="contraseña" class="form-control" required>
-        </div>
-        <div class="mb-3">
-            <label for="rol" class="form-label, text-left">Rol:</label>
-            <select name="rol" id="rol" class="form-select" required>
-                <option value="usuario">Usuario</option>
-                <option selected value="administrador">Administrador</option>
-            </select>
-        </div>
-        <button type="submit" class="btn btn-login">Crear Usuario</button>
-    </form>
-</div>
-       
+      </div>
     
 </div>
 {% endblock %}

@@ -4,8 +4,12 @@ from src.models.estudiantes import Estudiantes
 from src.models.instancia_curso import InstanciaCurso
 from src.models.inscripcion import Inscripcion
 from src.models import session
+from src.models.usuarios import rol_requerido
+from flask_login import  login_required
 
 @app.route('/registro', methods=['GET', 'POST'])
+@login_required
+@rol_requerido("administrador")
 def registro_estudiante():
 
     instancias_curso = session.query(InstanciaCurso).all()

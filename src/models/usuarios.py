@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String, Boolean
-from src.models import Base
+from src.models import Base, session
 from flask_bcrypt import Bcrypt
 from flask_login import UserMixin, current_user
 from functools import wraps
@@ -22,6 +22,24 @@ class Usuario(Base, UserMixin):
 
     def verificar_contraseña(self, contraseña):
         return bcrypt.check_password_hash(self.contraseña_hash, contraseña)
+    
+
+def crear_usuario_inicial():
+   
+    usuario_no_provisional = session.query(Usuario).filter(Usuario.es_provisional.is_(False)).first()
+    
+  
+    usuario_provisional = session.query(Usuario).filter(Usuario.es_provisional.is_(True)).first()
+    
+    if usuario_no_provisional is None and usuario_provisional is None:
+        
+        usuario = Usuario(nombre_usuario='provisional', rol='administrador', es_provisional=True)
+        usuario.establecer_contraseña('provisional')
+        session.add(usuario)
+        session.commit()
+        print(f"Se ha creado un usuario inicial: {usuario.nombre_usuario} , contraseña : provisional")
+    elif usuario_provisional is not None:
+        print("Ya existe un usuario provisional")
 
 
 def rol_requerido(rol_requerido):

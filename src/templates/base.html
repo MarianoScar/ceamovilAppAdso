@@ -49,6 +49,12 @@
         .image-container {
             margin-bottom: 20px; 
         }
+
+        .flash-messages {
+    margin-bottom: 20px;
+    
+}
+
     </style>
 </head>
 <body>
@@ -58,7 +64,7 @@
         <div class="row">
             <div class="col-12 p-0">
                 <nav class="navbar navbar-dark bg-dark">
-                    <h1 class="appName"><a href="/">CEAMOVILAPP</a></h1>
+                    <h1 class="appName"><a href="{{ url_for('index') }}">CEAMOVILAPP</a></h1>
                     <a href="/logout" class="btn btn-primary">LOGOUT</a>
                 </nav>
             </div>
