@@ -1,0 +1,73 @@
+
+{% extends "base.html" %}
+
+{% block title %}Registro de alumnos{% endblock %}
+
+{% block content %}
+
+<div class="col-10 form-container">
+
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+      <div class="flash-messages w-100">
+          {% for message in messages %}
+              <div class="alert alert-info">
+                  {{ message }}
+              </div>
+          {% endfor %}
+      </div>
+  {% endif %}
+  {% endwith %}
+  
+  
+    <main class="container mt-4">
+      <h2>Formulario de Registro  Instructor</h2>
+      <form action="/crear-instructor" method="post">
+        <div class="mb-3">
+          <label for="nombre" class="form-label">Nombre Completo</label>
+          <input type="text" class="form-control" id="nombre_instructor" name="nombre_instructor" placeholder="Ingresa tu nombre completo"  required minlength="2" maxlength="100" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]*">
+        </div>
+       
+
+        <div class="mb-3">
+          <label for="tipo_identificacion" class="form-label">Tipo de Documento</label>
+          <select class="form-select" id="tipo_identificacion" name="tipo_identificacion" required>
+            <option value="Pasaporte">Pasaporte</option>
+            <option value="Cedula">Cédula</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="numero_identificacion" class="form-label">Número de Documento</label>
+          <input type="number" class="form-control" id="numero_identificacion" name="numero_identificacion" placeholder="Ingresa tu número de documento" required>
+        </div>
+
+        <div class="col-md-12">
+          <label for="fecha_nacimiento" class="form-label">Seleccione la fecha de nacimiento:</label>cl
+          <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" required>
+       </div>
+
+        <div class="mb-3">
+          <label for="telefono" class="form-label">Número de Telefono</label>
+          <input type="tel" class="form-control" id="telefono" name="telefono" placeholder="Ingresa tu número de telefono" required pattern="[0-9]{10}" title="Debes ingresar numeros y deben ser 10 digitos">
+        </div>
+
+      
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="Ingresa tu email" required title="El formato de email es:  correo@ejemplo.com">
+        
+        </div>
+
+        <div class="mb-3">
+            <label for="numero_licencia" class="form-label">Número de Licencia</label>
+            <input type="number" class="form-control" id="numero_licencia" name="numero_licencia" placeholder="Ingresa  el numero de licencia del instructor" required>
+          </div>
+       
+
+        <button type="submit" class="btn btn-primary">Enviar</button>
+      </form>
+    </main>
+</div>
+{% endblock %}

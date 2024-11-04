@@ -28,6 +28,7 @@
                 <th>Curso</th>
                 <th>Fecha de Inicio</th>
                 <th>Fecha de Fin</th>
+                <th>Instructor</th>
             </tr>
         </thead>
         <tbody>
@@ -37,6 +38,8 @@
                 <td>{{ instancia.curso.nombre_curso }}</td>
                 <td>{{ instancia.fecha_inicio }}</td>
                 <td>{{ instancia.fecha_fin }}</td>
+                <td>{{ instancia.instructor.nombre_instructor }}</td>
+
             </tr>
             {% else %}
             <tr>

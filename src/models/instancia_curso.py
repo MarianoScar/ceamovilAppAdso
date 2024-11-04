@@ -8,10 +8,17 @@ class InstanciaCurso(Base, SerializerMixin ):
     
     id = Column(Integer, primary_key=True)
     curso_id = Column(Integer, ForeignKey('cursos.id'), nullable=False)
+    instructor_id = Column(Integer, ForeignKey('instructores.id'), nullable=False)
     fecha_inicio = Column(Date, nullable=False)
     fecha_fin = Column(Date, nullable=False)
     
     curso = relationship('Curso', back_populates='instancias')
 
-     # Esta es la relacion con el modelo Inscripciones
+    instructor = relationship('Instructor', back_populates='cursos_impartidos')
+
     inscripciones = relationship('Inscripcion', back_populates='instancia_curso')
+
+
+
+
+    

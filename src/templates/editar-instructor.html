@@ -1,0 +1,63 @@
+
+{% extends "base.html" %}
+
+{% block title %} Editar estudiante {% endblock %}
+
+{% block content %}
+<div class="col-10 form-container">
+
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+      <div class="flash-messages w-100">
+          {% for message in messages %}
+              <div class="alert alert-info">
+                  {{ message }}
+              </div>
+          {% endfor %}
+      </div>
+  {% endif %}
+  {% endwith %}
+  
+  
+    <main class="container mt-4">
+      <h2>Editar Instructor </h2>
+      <form action="{{ url_for('editar_instructor', id_instructor=instructor.id) }}" method="post">
+        <div class="mb-3">
+          <label for="nombre_instructor" class="form-label">Nombre Completo</label>
+          <input type="text" class="form-control" id="nombre_instructor" name="nombre_instructor" value="{{ instructor.nombre }}">
+        </div>
+       
+        <div class="mb-3">
+          <label for="tipo_identificacion" class="form-label">Tipo de Documento</label>
+          <select class="form-select" id="tipo_identificacion" name="tipo_identificacion">
+            <option value="Pasaporte" {{ 'selected' if instructor.tipo_identificacion == 'Pasaporte' }}>Pasaporte</option>
+            <option value="Cedula" {{ 'selected' if instructor.tipo_identificacion == 'Cedula' }}>Cédula</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="numero_identificacion" class="form-label">Número de Documento</label>
+          <input type="text" class="form-control" id="numero_identificacion" name="numero_identificacion"  value="{{instructor.numero_identificacion}}">
+        </div>
+
+        <div class="col-md-12">
+          <label for="fecha_nacimiento" class="form-label">Seleccione la fecha de nacimiento:</label>
+          <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" value="{{instructore.fecha_nacimiento}}">
+       </div>
+
+        <div class="mb-3">
+          <label for="telefono" class="form-label">Número de Telefono</label>
+          <input type="text" class="form-control" id="telefono" name="telefono"  value="{{instructor.telefono}}">
+        </div>
+  
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" name="email" value="{{instructor.email}}">
+        </div>
+              
+        <button type="submit" class="btn btn-primary">Enviar</button>
+      </form>
+    </main>
+</div>
+{% endblock %}

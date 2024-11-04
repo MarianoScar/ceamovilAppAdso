@@ -39,7 +39,9 @@ def buscar_estudiante():
         if estudiantes:
             return render_template('tabla-estudiantes.html', estudiantes=estudiantes)
         else:
-            return render_template('tabla-estudiantes.html', mensaje='No se encontraron resultados.')
+            flash("No se encontro ningun resultado", "success")
+            return redirect(url_for('buscar_estudiante'))
+            
 
     
     return render_template('menu-estudiantes.html')

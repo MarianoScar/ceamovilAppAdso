@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Gestión de Cursos{% endblock %}
+
+{% block content %}
+<div class="col-10 form-container">
+
+    {% with messages = get_flashed_messages(with_categories=True) %}
+    {% if messages %}
+        <div class="flash-messages">
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }} {% if category == 'error' %}alert-danger{% endif %}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+
+
+  
+
+<h2 class="w-100 text-center">Lista Instructores</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>numero de licencia</th>
+                <th>Acciones</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for instructor in instructores %}
+            <tr>
+                <td>{{ instructor.id }}</td>
+                <td>{{ instructor.nombre_instructor }}</td>
+                <td>{{ instructor.numero_licencia }}</td>
+                <td>
+                    <form action="{{ url_for('eliminar_instructor', id_instructor=instructor.id) }}" method="POST" style="display: inline;">
+                        <button type="submit" class="btn btn-danger btn-sm" 
+                                onclick="return confirm('¿Está seguro que desea eliminar este instructor?')">
+                            Eliminar
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="4">No hay Instructores registrados.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="/crear-instructor" class="btn btn-info w-100 text-center">Registrar nuevo instructor</a>   
+</div>
+{% endblock %}

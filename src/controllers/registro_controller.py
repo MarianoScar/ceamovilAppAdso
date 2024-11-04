@@ -15,8 +15,8 @@ def registro_estudiante():
     instancias_curso = session.query(InstanciaCurso).all()
 
     if not instancias_curso:
-        #flash('No hay instancias de curso disponibles para inscripción.')
-        return render_template('index.html', mensaje = 'No existe un curso abierto aun, debes crear un CURSO nuevo para poder registrar a un estudiante. Por favor ingresa al menu CURSOS en la barra lateral.')
+        flash('No has ABIERTO un CURSO aun, debe haber cursos abiertos par poder registrar un Estudiante.', 'error')
+        return render_template('menu-estudiantes.html')
     
     if request.method == 'POST':
         

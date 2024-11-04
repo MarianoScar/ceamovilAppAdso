@@ -26,6 +26,10 @@ class Estudiantes(Base, SerializerMixin):
         self.email = email
         self.fecha_nacimiento = fecha_nacimiento
 
+
+
+
+
    
 
 

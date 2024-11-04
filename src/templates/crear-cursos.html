@@ -18,8 +18,15 @@
                     <option value="{{ curso.id }}">{{ curso.nombre_curso }}</option>
                 {% endfor %}
             </select>
-        </div>
-        
+
+            <select name="instructor_id" required>
+                <option value="">Selecciona un instructor</option>
+                {% for instructor in instructores %}
+                    <option value="{{ instructor.id }}">{{ instructor.nombre_instructor }}</option>
+                {% endfor %}
+            </select>
+    
+    </div>
         <div class="mb-3">
             <label for="fecha_inicio" class="form-label">Fecha de Inicio</label>
             <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" required>
@@ -31,16 +38,17 @@
         </div>
 
         <h3>Lista de Cursos Inicializados</h3>
-<ul>
+   <!-- <ul>
     {% for curso in cursos %}
         <li>{{ curso.nombre_curso }}</li>
     {% else %}
         <li>No hay cursos inicializados.</li>
     {% endfor %}
-</ul>
+    </ul>
+    -->
 
 
-        <button type="submit" class="btn btn-primary">Crear Instancia</button>
+        <button type="submit" class="btn btn-primary">Abrir Curso</button>
     </form>
 
     
