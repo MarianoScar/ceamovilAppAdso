@@ -2,7 +2,6 @@ from src.models import Base, session
 from sqlalchemy import Column,Integer, Boolean, String, ForeignKey, Date
 from sqlalchemy.orm import relationship
 from src.models.estudiantes import Estudiantes
-from src.models.instancia_curso import InstanciaCurso
 from src.models.certificado import Certificado
 import os
 from reportlab.lib.pagesizes import letter
@@ -14,8 +13,8 @@ CERTIFICADOS_DIR = "certificados"
 class Clase(Base):
     __tablename__ = 'clase'
     
-    id = Column(Integer(), primary_key=True)
-    instancia_curso_id = Column(Integer(), ForeignKey('instancia_curso.id'), nullable=False)
+    id = Column(Integer, primary_key=True)
+    instancia_curso_id = Column(Integer, ForeignKey('instancia_curso.id'), nullable=False)
     fecha = Column(Date, nullable=False)
     tema = Column(String(100))  
     
@@ -25,6 +24,7 @@ class Clase(Base):
 
 
 def generar_certificado(estudiante_id, instancia_curso_id):
+    from src.models.instancia_curso import InstanciaCurso
     
     estudiante = session.query(Estudiantes).get(estudiante_id)
     instancia_curso = session.query(InstanciaCurso).get(instancia_curso_id)

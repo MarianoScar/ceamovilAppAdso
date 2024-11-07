@@ -4,18 +4,19 @@ from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.orm import relationship
 
 
-class Estudiantes(Base, SerializerMixin):
+class Estudiantes(Base):
     __tablename__ = "estudiantes"    
     id = Column(Integer, primary_key=True)    
-    nombre = Column(String(100), unique=False, nullable=False)
-    tipo_identificacion = Column(String(20), unique=False, nullable=False)
-    numero_identificacion = Column(Integer(), unique=True, nullable=False)
-    telefono = Column(Integer(), unique=False, nullable=False)
-    email = Column(String(50), unique=False, nullable=False)
+    nombre = Column(String(100), nullable=False)
+    tipo_identificacion = Column(String(20), nullable=False)
+    numero_identificacion = Column(Integer, unique=True, nullable=False)
+    telefono = Column(Integer, nullable=False)
+    email = Column(String(50), nullable=False)
     fecha_nacimiento = Column(Date)
 
-    # Esta es la relacion con la clase Inscripcion
+    
     inscripciones = relationship('Inscripcion', back_populates='estudiante', cascade="all, delete")
+    certificados = relationship('Certificado', secondary='inscripcion', viewonly=True) 
 
 
     def __init__(self, nombre, tipo_identificacion, numero_identificacion, telefono, email, fecha_nacimiento):

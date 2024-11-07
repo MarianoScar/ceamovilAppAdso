@@ -46,13 +46,13 @@ def abrir_cursos():
 
         curso_id = request.form['curso_id']
         fecha_inicio = request.form['fecha_inicio']
-        fecha_fin = request.form['fecha_fin']
+       # fecha_fin = request.form['fecha_fin']
         instructor_id = request.form['instructor_id']
         
         try:
             fecha_inicio_dt = datetime.strptime(fecha_inicio, '%Y-%m-%d')
-            fecha_fin_dt = datetime.strptime(fecha_fin, '%Y-%m-%d')
             fecha_actual = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
+            fecha_fin_dt = fecha_inicio_dt + timedelta(days=14)
             
             # Aqui reviso que la feche de inicio sea mayor que la actual
             if fecha_inicio_dt < fecha_actual:
@@ -67,11 +67,13 @@ def abrir_cursos():
             
             diferencia_dias = (fecha_fin_dt - fecha_inicio_dt).days
             
+
+            # fecha_fin=fecha_fin,
             if diferencia_dias >= 15:
                 nueva_instancia = InstanciaCurso(
                     curso_id=curso_id,
                     fecha_inicio=fecha_inicio,
-                    fecha_fin=fecha_fin,
+                    
                     instructor_id=instructor_id
                 )
                 

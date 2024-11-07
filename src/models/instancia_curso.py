@@ -3,7 +3,7 @@ from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.orm import relationship
 from src.models import Base, session
 from datetime import datetime, timedelta 
-from src.models.clase import Clase
+
 
 
 
@@ -36,9 +36,9 @@ class InstanciaCurso(Base):
     fecha_inicio = Column(Date, nullable=False)
     fecha_final = Column(Date, nullable=False)
     
-    curso = relationship('Curso', back_populates='instancias')
-    instructor = relationship('Instructor', back_populates='instancias_curso')
-    inscripciones = relationship('Inscripcion', back_populates='instancia_curso')
+    curso = relationship('Curso', back_populates='instancias') 
+    instructor = relationship('Instructor', back_populates='cursos_impartidos')  
+    inscripciones = relationship('Inscripcion', back_populates='instancia_curso', cascade="all, delete-orphan")
     clases = relationship('Clase', back_populates='instancia_curso', cascade="all, delete-orphan")
 
     def __init__(self, curso_id, fecha_inicio, instructor_id=None):
@@ -49,6 +49,7 @@ class InstanciaCurso(Base):
         self.programar_clases()
 
     def programar_clases(self):
+        from src.models.clase import Clase
         for i in range(15):
             fecha_clase = self.fecha_inicio + timedelta(days=i)
             tema = TEMAS_CLASES[i]
@@ -56,4 +57,12 @@ class InstanciaCurso(Base):
             session.add(clase)
             session.commit()
 
-    
+
+
+
+
+
+
+
+
+

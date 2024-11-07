@@ -8,8 +8,9 @@ from sqlalchemy.orm import relationship
 class Certificado(Base):
     __tablename__ = 'certificado'
     
-    id = Column(Integer(), primary_key=True)
-    estudiante_id = Column(Integer, ForeignKey('estudiante.id'), nullable=False)
-    archivo_pdf = Column(String(255), nullable=True)  # O puedes usar una ruta de archivo
+    id = Column(Integer, primary_key=True)
+    inscripcion_id = Column(Integer, ForeignKey('inscripcion.id'), nullable=False) 
+    archivo_pdf = Column(String(255), nullable=True) 
 
-    estudiante = relationship('Estudiantes', back_populates='certificados')
+    
+    inscripcion = relationship('Inscripcion', back_populates='certificado')

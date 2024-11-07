@@ -5,15 +5,14 @@ from src.models import Base
 
 
 class Curso(Base, SerializerMixin):
-    __tablename__ = 'cursos'
+    __tablename__ = 'curso'
     
     id = Column(Integer, primary_key=True)
     nombre_curso = Column(String(50), nullable=False, unique=True)
     duracion_dias = Column(Integer, nullable=False)
 
-    # Esta es la relacion con la clase InstanciaCurso
     instancias = relationship("InstanciaCurso", back_populates="curso")
-
+    
 def inicializar_cursos(session):
 
     #  Verificamos di existen los cursos
