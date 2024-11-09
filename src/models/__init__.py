@@ -4,7 +4,7 @@ from sqlalchemy.orm import declarative_base, sessionmaker
 
 
 
-engine = create_engine("mysql+pymysql://root@localhost/ceamovildb2")
+engine = create_engine("mysql+pymysql://root@localhost/ceamovil")
 connection = engine.connect()
 
 Base = declarative_base()

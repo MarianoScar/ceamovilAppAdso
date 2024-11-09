@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %} Bienvenido a CEAMOVILAPP {% endblock %}
+
+{% block content %}
+
+
+
+
+<div class="col-10 form-container">
+
+ 
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="flash-messages w-100">
+            {% for message in messages %}
+                <div class="alert alert-info">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% endwith %}
+    
+
+    <div class="container mt-2">
+        
+
+<h1>Clases para {{ instancia_curso.curso.nombre_curso }}</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Clase</th>
+            <th>Fecha</th>
+            <th>Tema</th>
+            <th>Asistencia</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for clase in clases %}
+        <tr>
+            <td>{{ clase.id }}</td>
+            <td>Clase {{ loop.index }}</td>
+            <td>{{ clase.fecha }}</td>
+            <td>{{ clase.tema }}</td>
+
+           
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+    </div>
+</div>
+{% endblock %}

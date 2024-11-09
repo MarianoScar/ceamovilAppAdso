@@ -46,7 +46,6 @@ class InstanciaCurso(Base):
         self.fecha_inicio = fecha_inicio
         self.instructor_id = instructor_id
         self.fecha_final = self.fecha_inicio + timedelta(days=14)  # Calcular la fecha final
-        self.programar_clases()
 
     def programar_clases(self):
         from src.models.clase import Clase
@@ -55,7 +54,7 @@ class InstanciaCurso(Base):
             tema = TEMAS_CLASES[i]
             clase = Clase(instancia_curso_id=self.id, fecha=fecha_clase, tema=tema)
             session.add(clase)
-            session.commit()
+            session.commit()  # Mover el commit aquí para que se realice después de agregar todas las clases
 
 
 

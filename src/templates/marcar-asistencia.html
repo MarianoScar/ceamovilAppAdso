@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %} Bienvenido a CEAMOVILAPP {% endblock %}
+
+{% block content %}
+
+
+
+
+<div class="col-10 form-container">
+
+ 
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="flash-messages w-100">
+            {% for message in messages %}
+                <div class="alert alert-info">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% endwith %}
+    
+
+    <div class="container mt-2">
+       
+
+        <!-- templates/marcar_asistencia.html -->
+
+        <h1>Marcar Asistencia - Clase {{ clase.tema }}</h1>
+        <h3>Fecha: {{ clase.fecha }}</h3>
+
+        <form method="post" action="{{ url_for('guardar_asistencia', clase_id=clase.id) }}">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Estudiante</th>
+                        <th>Presente</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for estudiante in estudiantes %}
+                    <tr>
+                        <td>{{ estudiante.nombre }}</td>
+                        <td>
+                            <input type="checkbox" name="presente" value="{{ estudiante.id }}">
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <button type="submit">Guardar Asistencia</button>
+        </form>
+
+
+
+    </div>
+</div>
+{% endblock %}
