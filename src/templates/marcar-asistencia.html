@@ -27,13 +27,13 @@
     <div class="container mt-2">
        
 
-        <!-- templates/marcar_asistencia.html -->
+       
 
         <h1>Marcar Asistencia - Clase {{ clase.tema }}</h1>
         <h3>Fecha: {{ clase.fecha }}</h3>
 
         <form method="post" action="{{ url_for('guardar_asistencia', clase_id=clase.id) }}">
-            <table>
+            <table class="table">
                 <thead>
                     <tr>
                         <th>Estudiante</th>

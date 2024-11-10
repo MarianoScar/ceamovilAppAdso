@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %} CERTIFICACIONES {% endblock %}
+
+{% block content %}
+
+
+<div class="col-10 form-container">
+
+  {% with messages = get_flashed_messages(with_categories=True) %}
+  {% if messages %}
+      <div class="flash-messages">
+          {% for category, message in messages %}
+              <div class="alert alert-{{ category }} {% if category == 'error' %}alert-alert{% endif %}">
+                  {{ message }}
+              </div>
+          {% endfor %}
+      </div>
+  {% endif %}
+{% endwith %}
+
+      <h1>Consulta a Estudiantes para asistencia y certificaciones</h1>
+
+  <div class="container mt-3">
+    <form action="/buscar-estudiante-certificaion" method="post">
+        <div class="mb-3">
+            <div class="input-group">
+                <input type="text" class="form-control" id="busqueda" name="busqueda" placeholder="Ingrese su búsqueda">
+                <button type="submit" class="btn btn-primary">BUSCAR ESTUDIANTE</button>
+            </div>
+    </form>
+</div>
+  
+    
+  
+
+</div>
+{% endblock %}
+
+
+

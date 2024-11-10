@@ -29,14 +29,14 @@
 
 <h1>Clases para {{ instancia_curso.curso.nombre_curso }}</h1>
 
-<table class="table">
+<table class="table mt-2">
     <thead>
         <tr>
             <th>ID</th>
             <th>Clase</th>
             <th>Fecha</th>
             <th>Tema</th>
-            <th>Asistencia</th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -46,6 +46,7 @@
             <td>Clase {{ loop.index }}</td>
             <td>{{ clase.fecha }}</td>
             <td>{{ clase.tema }}</td>
+            <td><td><a href="{{ url_for('mostrar_asistencia', clase_id=clase.id) }}" class="btn btn-primary mt-2">DETALLES</a></td>
 
            
         </tr>
