@@ -11,12 +11,20 @@ from flask_login import  login_required
 
 
 
-@app.route('/estudiantes')
+@app.route('/estudiantes')      
+@login_required
+@rol_requerido(["administrador", "usuario"])         
 def lista_estudiantes():
     estudiantes = session.query(Estudiantes).all()
+
+    if not estudiantes:
+        flash("No se han registrados alumnos aun.", "error")
+
     return render_template('menu-estudiantes.html', estudiantes=estudiantes)
 
 @app.route('/buscar', methods=['GET', 'POST'])
+@login_required
+@rol_requerido(["administrador", "usuario"])  
 def buscar_estudiante():
     if request.method == 'POST':
         busqueda = request.form['busqueda']  

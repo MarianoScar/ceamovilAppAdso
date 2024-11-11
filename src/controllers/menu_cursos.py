@@ -10,6 +10,8 @@ from flask_login import  login_required
 
 
 @app.route('/cursos', methods=['GET'])
+@login_required
+@rol_requerido(["administrador", "usuario"]) 
 def mostrar_instancias():
     instancias = session.query(InstanciaCurso).all()
     instructores = session.query(Instructor).all() 

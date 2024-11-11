@@ -5,10 +5,14 @@ from src.models.instancia_curso import InstanciaCurso
 from src.models.clase import Clase
 from src.models.asistencia import Asistencia 
 from src.app import app
+from src.models.usuarios  import rol_requerido
+from flask_login import  login_required
 
 
 
 @app.route('/instancia-curso/<int:instancia_curso_id>', methods=['GET'])
+@login_required
+@rol_requerido(["administrador", "usuario"])  
 def ver_clases(instancia_curso_id):
    
     instancia_curso = session.query(InstanciaCurso).get(instancia_curso_id)
@@ -24,6 +28,8 @@ def ver_clases(instancia_curso_id):
 
 
 @app.route('/clase/<int:clase_id>', methods=['GET'])
+@login_required
+@rol_requerido(["administrador", "usuario"])  
 def mostrar_asistencia(clase_id):
     
     clase = session.query(Clase).get(clase_id)
@@ -41,28 +47,30 @@ def mostrar_asistencia(clase_id):
 
 
 @app.route('/clase-asistencia/<int:clase_id>', methods=['POST'])
+@login_required
+@rol_requerido(["administrador", "usuario"])  
 def guardar_asistencia(clase_id):
-    presente_data = request.form.getlist('presente')  # Lista con los IDs de estudiantes marcados como presentes
+    presente_data = request.form.getlist('presente')  
     
     clase = session.query(Clase).get(clase_id)
     inscripciones = session.query(Inscripcion).filter_by(instancia_curso_id=clase.instancia_curso_id).all()
 
-    estudiantes_duplicados = []  # Para guardar los estudiantes con asistencia duplicada
+    estudiantes_duplicados = [] 
 
     for inscripcion in inscripciones:
-        # Chequear si el estudiante ya tiene un registro de asistencia para esta clase
+       
         asistencia_existente = session.query(Asistencia).filter_by(
             inscripcion_id=inscripcion.id,
             clase_id=clase_id
         ).first()
 
-        # Si ya tiene un registro, agregar a duplicados y continuar al siguiente estudiante
+        
         if asistencia_existente:
             estudiantes_duplicados.append(inscripcion.estudiante.nombre)
             continue
 
-        # Registrar asistencia solo si no existe aún
-        presente = str(inscripcion.estudiante.id) in presente_data  # Verificar si el estudiante está en la lista de presentes
+       
+        presente = str(inscripcion.estudiante.id) in presente_data 
         asistencia = Asistencia(
             inscripcion_id=inscripcion.id,
             clase_id=clase_id,
@@ -70,9 +78,9 @@ def guardar_asistencia(clase_id):
         )
         session.add(asistencia)
 
-    session.commit()  # Guardar todos los registros en una sola operación de commit
+    session.commit()  
 
-    # Mensajes flash dependiendo de si hubo duplicados o no
+   
     if estudiantes_duplicados:
         flash(f'YA se hizo el registro de asistencia para esta clase, no es posible ingresar la asistencia nuevamente.', 'warning')
     else:

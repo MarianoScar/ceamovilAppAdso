@@ -40,7 +40,11 @@
         </tbody>
     </table>
 
-    <a  href="{{ url_for('buscar_estudiante_certificacion') }}">Volver</a>
+    <a class="btn btn-info mt-3" href="{{ url_for('buscar_estudiante_certificacion') }}">Volver</a>
+    <a class="btn btn-success" href="{{ url_for('generar_certificado', estudiante_id=estudiante.id, instancia_curso_id=instancia_curso.id) }}">
+    Generar Certificado
+    </a>
+    
       </div>
 
 </div>

@@ -42,17 +42,24 @@ def crear_usuario_inicial():
         print("Ya existe un usuario provisional")
 
 
-def rol_requerido(rol_requerido):
-    def decorador(f):
+
+def rol_requerido(roles_permitidos):
+    def decorator(f):
         @wraps(f)
-        def decorador_funcion(*args, **kwargs):
+        def decorated_function(*args, **kwargs):
+            # Si el usuario no está autenticado, redirigir a login
             if not current_user.is_authenticated:
-                flash("Debes iniciar sesión para acceder a esta página.")
-                return redirect(url_for("login"))
-            elif current_user.rol != rol_requerido:
-                flash("No tienes permisos para acceder a esta página.")
-                return redirect(url_for("index"))  # Cambia 'index' si deseas otra ruta predeterminada
+                return redirect(url_for('login', next=request.url))
+            
+            # Convertir a lista si es un solo rol
+            roles = roles_permitidos if isinstance(roles_permitidos, list) else [roles_permitidos]
+            
+            # Verificar si el usuario tiene el rol requerido
+            if not hasattr(current_user, 'rol') or current_user.rol not in roles:
+                flash('No tienes permiso para acceder a esta página.')
+                return redirect(url_for('index'))
+                
             return f(*args, **kwargs)
-        return decorador_funcion
-    return decorador
+        return decorated_function
+    return decorator
 

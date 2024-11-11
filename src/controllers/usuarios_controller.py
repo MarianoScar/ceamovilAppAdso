@@ -8,6 +8,8 @@ from flask_login import  login_required
 
 
 @app.route('/lista-usuarios')
+@login_required
+@rol_requerido(["administrador", "usuario"])  
 def lista_usuarios():
     usuarios = session.query(Usuario).all()
     if usuarios :

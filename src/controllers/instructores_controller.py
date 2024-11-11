@@ -11,6 +11,8 @@ from flask_login import  login_required
 
 
 @app.route('/menu-instructores')
+@login_required
+@rol_requerido(["administrador", "usuario"]) 
 def lista_instructores():
     instructores = session.query(Instructor).all()
     return render_template('menu-instructores.html', instructores=instructores)
