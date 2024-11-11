@@ -48,21 +48,19 @@ def menu_certificaciones():
 
 
 
-@app.route('/estudiante/<int:estudiante_id>/asistencia/<int:instancia_curso_id>', methods=['GET'])
-
-def ver_asistencia_estudiante(estudiante_id, instancia_curso_id):
-    
+@app.route('/consulta-asistencia/<int:estudiante_id>/<int:instancia_curso_id>')
+def consulta_asistencia(estudiante_id, instancia_curso_id):
+    estudiante = session.query(Estudiantes).get(estudiante_id)
     instancia_curso = session.query(InstanciaCurso).get(instancia_curso_id)
     clases = session.query(Clase).filter_by(instancia_curso_id=instancia_curso_id).all()
-    
-    # Verificar si el estudiante está inscrito en esta instancia de curso
-    inscripcion = session.query(Inscripcion).filter_by(estudiante_id=estudiante_id, instancia_curso_id=instancia_curso_id).first()
-    if not inscripcion:
-        flash("El estudiante no está inscrito en este curso.", "error")
-        return redirect(url_for('menu_cursos.ver_instancias'))
 
-    # Obtener asistencia del estudiante en cada clase
-    asistencia = session.query(Asistencia).filter_by(inscripcion_id=inscripcion.id).all()
-    asistencia_dict = {a.clase_id: a.presente for a in asistencia}
+    # Obtener asistencia para cada clase del estudiante
+    asistencias = {}
+    for clase in clases:
+        asistencia = session.query(Asistencia).filter_by(
+            inscripcion_id=estudiante_id,
+            clase_id=clase.id
+        ).first()
+        asistencias[clase] = "Presente" if asistencia and asistencia.presente else "Ausente"
 
-    return render_template('ver_asistencia_estudiante.html', clases=clases, asistencia=asistencia_dict, estudiante=inscripcion.estudiante, instancia_curso=instancia_curso)
+    return render_template('consulta-asistencia.html', estudiante=estudiante, instancia_curso=instancia_curso, asistencias=asistencias)

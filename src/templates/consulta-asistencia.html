@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %} Tabla de estudiantes {% endblock %}
+
+{% block content %}
+
+
+<div class="col-10 form-container">
+
+  {% with messages = get_flashed_messages(with_categories=True) %}
+  {% if messages %}
+      <div class="flash-messages">
+          {% for category, message in messages %}
+              <div class="alert alert-{{ category }} {% if category == 'error' %}alert-alert{% endif %}">
+                  {{ message }}
+              </div>
+          {% endfor %}
+      </div>
+  {% endif %}
+{% endwith %}
+
+      <div>
+        <h1>Consulta de Asistencia para {{ estudiante.nombre }}</h1>
+    <h2>Curso: {{ instancia_curso.curso.nombre }}</h2>
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Fecha de Clase</th>
+                <th>Asistencia</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for clase, estado in asistencias.items() %}
+                <tr>
+                    <td>{{ clase.fecha }}</td>
+                    <td>{{ estado }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a  href="{{ url_for('buscar_estudiante_certificacion') }}">Volver</a>
+      </div>
+
+</div>
+{% endblock %}
+
+
+

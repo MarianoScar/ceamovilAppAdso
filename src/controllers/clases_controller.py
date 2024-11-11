@@ -42,13 +42,27 @@ def mostrar_asistencia(clase_id):
 
 @app.route('/clase-asistencia/<int:clase_id>', methods=['POST'])
 def guardar_asistencia(clase_id):
-    presente_data = request.form.getlist('presente') 
+    presente_data = request.form.getlist('presente')  # Lista con los IDs de estudiantes marcados como presentes
     
     clase = session.query(Clase).get(clase_id)
     inscripciones = session.query(Inscripcion).filter_by(instancia_curso_id=clase.instancia_curso_id).all()
 
+    estudiantes_duplicados = []  # Para guardar los estudiantes con asistencia duplicada
+
     for inscripcion in inscripciones:
-        presente = str(inscripcion.estudiante.id) in presente_data
+        # Chequear si el estudiante ya tiene un registro de asistencia para esta clase
+        asistencia_existente = session.query(Asistencia).filter_by(
+            inscripcion_id=inscripcion.id,
+            clase_id=clase_id
+        ).first()
+
+        # Si ya tiene un registro, agregar a duplicados y continuar al siguiente estudiante
+        if asistencia_existente:
+            estudiantes_duplicados.append(inscripcion.estudiante.nombre)
+            continue
+
+        # Registrar asistencia solo si no existe aún
+        presente = str(inscripcion.estudiante.id) in presente_data  # Verificar si el estudiante está en la lista de presentes
         asistencia = Asistencia(
             inscripcion_id=inscripcion.id,
             clase_id=clase_id,
@@ -56,9 +70,19 @@ def guardar_asistencia(clase_id):
         )
         session.add(asistencia)
 
-    session.commit()
-    flash('Asistencia registrada correctamente.', 'success')
+    session.commit()  # Guardar todos los registros en una sola operación de commit
+
+    # Mensajes flash dependiendo de si hubo duplicados o no
+    if estudiantes_duplicados:
+        flash(f'YA se hizo el registro de asistencia para esta clase, no es posible ingresar la asistencia nuevamente.', 'warning')
+    else:
+        flash('Asistencia registrada correctamente.', 'success')
+
     return redirect(url_for('ver_clases', instancia_curso_id=clase.instancia_curso_id))
+
+
+
+
 
 
 
